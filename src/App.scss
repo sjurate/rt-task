@@ -1,5 +1,5 @@
 $mainGreen: rgb(133, 222, 60, 0.9);
-$evenGreen: rgba(142, 212, 85, 0.4);
+$evenGreen: rgba(121, 223, 37, 0.4);
 $oddGreen: rgba(156, 251, 79, 0.4);
 $textColor: rgb(31, 31, 31);
 
@@ -62,11 +62,13 @@ body {
       border-radius: 0.25rem;
       background-color: $evenGreen;
       .fa {
-        margin-left: 0.5rem;
+        margin-left: 0.25rem;
+        margin-right: 0.5rem;
       }
     }
   }
 }
+// LIST -----------------------------------
 
 .countries-list-box {
   width: 60%;
@@ -96,6 +98,15 @@ body {
       padding: 0.8em 0 0.8em 2em;
       font-size: 1.1rem;
       font-weight: 500;
+      gap: 0.1rem;
+      .country-region {
+        color: rgba(61, 112, 20);
+        font-size: 0.95rem;
+      }
+      .sq-km {
+        font-size: 18px;
+        margin-left: 0.25rem;
+      }
     }
     .country-line:nth-child(even) {
       background-color: $evenGreen;
@@ -103,6 +114,16 @@ body {
     .country-line:nth-child(odd) {
       background-color: $oddGreen;
     }
+  }
+}
+
+// PAGINATION ---------------------------
+
+.pages {
+  display: flex;
+  gap: 0.25rem;
+  .page-number {
+    cursor: pointer;
   }
 }
 
