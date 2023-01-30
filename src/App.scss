@@ -119,6 +119,11 @@ body {
 
 // PAGINATION ---------------------------
 
+.pagination-field {
+  display: flex;
+  gap: 0.2rem;
+}
+
 .pages {
   display: flex;
   gap: 0.25rem;

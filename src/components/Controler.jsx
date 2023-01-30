@@ -9,14 +9,25 @@ const Controler = () => {
     filterByRegion,
     setFilterBySize,
     setFilterByRegion,
+    setLastUpdate,
   } = useContext(MainContext);
+
+  const filterByRegionOn = () => {
+    setFilterByRegion((prev) => !prev);
+    setLastUpdate(Date.now());
+  };
+
+  const filterBySizeOn = () => {
+    setFilterBySize((prev) => !prev);
+    setLastUpdate(Date.now());
+  };
 
   return (
     <div className="controler-box">
-      <div className="search-box">
+      {/* <div className="search-box">
         <input className="search-input"></input>
         <button className="search-btn">Search</button>
-      </div>
+      </div> */}
       <div className="sort-box">
         <h3>Sort:</h3>
         <div className="sort-select">
@@ -34,7 +45,7 @@ const Controler = () => {
         <h3>Filter:</h3>
         <button
           className="filter-btn"
-          onClick={() => setFilterBySize((prev) => !prev)}
+          onClick={filterBySizeOn}
           style={{
             border: filterBySize
               ? "2px solid #4B9F27"
@@ -51,7 +62,7 @@ const Controler = () => {
         </button>
         <button
           className="filter-btn"
-          onClick={() => setFilterByRegion((prev) => !prev)}
+          onClick={filterByRegionOn}
           style={{
             border: filterByRegion
               ? "2px solid #4B9F27"
