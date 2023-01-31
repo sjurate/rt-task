@@ -2,6 +2,7 @@ $mainGreen: rgb(133, 222, 60, 0.9);
 $evenGreen: rgba(121, 223, 37, 0.4);
 $oddGreen: rgba(156, 251, 79, 0.4);
 $textColor: rgb(31, 31, 31);
+$mainBackground: #e3ffe3;
 
 #root {
   margin: 0 auto;
@@ -19,6 +20,10 @@ body * {
 
 body {
   font-family: "Roboto", sans-serif;
+}
+
+.main-page {
+  background-color: $mainBackground;
 }
 
 // HEADER -------------------------
@@ -39,6 +44,7 @@ body {
 .controler-box {
   width: 60%;
   margin: 0 auto;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -74,18 +80,7 @@ body {
   width: 60%;
   margin: 3rem auto;
   background-color: rgba(170, 236, 117, 0.4);
-  // background-image: linear-gradient(
-  //   0deg,
-  //   hsl(111deg 47% 97%) 0%,
-  //   hsl(117deg 54% 93%) 14%,
-  //   hsl(119deg 57% 90%) 29%,
-  //   hsl(120deg 59% 86%) 43%,
-  //   hsl(120deg 60% 81%) 57%,
-  //   hsl(120deg 62% 76%) 58%,
-  //   hsl(121deg 64% 71%) 60%,
-  //   hsl(121deg 66% 64%) 70%
-  // );
-
+  min-height: 100vh;
   .countries-list {
     display: flex;
     flex-direction: column;
@@ -117,24 +112,87 @@ body {
   }
 }
 
-// PAGINATION ---------------------------
-
-.pagination-field {
-  display: flex;
-  gap: 0.2rem;
+// LOADER ------------------------------
+#loading {
+  display: inline-block;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-top: 3rem;
+  border: 0.2rem solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
 }
 
-.pages {
-  display: flex;
-  gap: 0.25rem;
-  .page-number {
-    cursor: pointer;
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
   }
 }
 
-@media (max-width: 560px) {
-  .countries-list-box {
+// PAGINATION ---------------------------
+
+.pagination-box {
+  width: 60%;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+  display: flex;
+  justify-content: flex-end;
+  .pagination-list {
+    display: flex;
+    gap: 0.2rem;
+    .page-item {
+      list-style: none;
+      font-size: 0.9rem;
+      .page-btn {
+        width: 1.8rem;
+        background-color: $evenGreen;
+        padding: 0.2rem 0;
+        cursor: pointer;
+        border: none;
+        .fa {
+          font-weight: 400;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .countries-list-box,
+  .pagination-box,
+  .controler-box {
     width: 80%;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    font-size: 14px;
+  }
+  .header {
+    font-size: 2rem;
+    text-align: center;
+  }
+  select {
+    option {
+      min-height: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination-box {
+    .pagination-list {
+      flex-wrap: wrap;
+    }
   }
 }
 

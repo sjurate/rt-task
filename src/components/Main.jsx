@@ -5,7 +5,6 @@ import Header from "./Header";
 import Controler from "./Controler";
 import List from "./List";
 import Pagination from "./Pagination";
-import { async } from "regenerator-runtime";
 
 const Main = () => {
   const [countries, setCountries] = useState(null);
@@ -15,24 +14,12 @@ const Main = () => {
   const [filterByRegion, setFilterByRegion] = useState(false);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [numberOfPages, setNumberOfPages] = useState(0);
   const [countriesPerPage] = useState(20);
   const [totalCountries, setTotalCountries] = useState(0);
   const [currentCountries, setCurrentCountries] = useState();
   const [displayedCountries, setDisplayedCountries] = useState([]);
   const indexOfLastCountry = currentPage * countriesPerPage;
-
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-
-  // fetching countries for list
-  // useEffect(() => {
-  //   fetch("https://restcountries.com/v2/all?fields=name,region,area")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setCountries(data.map((d, i) => ({ ...d, show: true, row: i })));
-  //     })
-  //     .catch((_) => setCountries("ERROR"));
-  // }, [setCountries]);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -69,19 +56,17 @@ const Main = () => {
               res.data.map((country, i) => ({ ...country, show: true, row: i }))
             );
           }
+        })
+        .catch((error) => {
+          console.log(error.message);
+          alert(error.message);
         });
-
       setLoading(false);
     };
     fetchCountries();
   }, [lastUpdate]);
 
-  // Get current countries
-  console.log("cur page");
-  console.log(currentPage);
-  console.log("index of last");
-  console.log(indexOfLastCountry);
-
+  // Get all countries that are displayed (show === true)
   useEffect(() => {
     if (countries) {
       setDisplayedCountries((prev) =>
@@ -90,6 +75,7 @@ const Main = () => {
     }
   }, [countries]);
 
+  // Get countries for the current page
   useEffect(() => {
     if (displayedCountries) {
     }
@@ -102,7 +88,7 @@ const Main = () => {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // sorting functionality
+  // Sorting functionality
   useEffect(() => {
     switch (sortBy) {
       case "az":
@@ -148,9 +134,11 @@ const Main = () => {
           filterByRegion,
           setFilterByRegion,
           setFilterBySize,
+          setCurrentPage,
           countriesPerPage,
           totalCountries,
           paginate,
+          currentPage,
         }}
       >
         <Header />

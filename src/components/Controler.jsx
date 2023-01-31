@@ -10,24 +10,23 @@ const Controler = () => {
     setFilterBySize,
     setFilterByRegion,
     setLastUpdate,
+    setCurrentPage,
   } = useContext(MainContext);
 
   const filterByRegionOn = () => {
     setFilterByRegion((prev) => !prev);
+    setCurrentPage((prev) => 1);
     setLastUpdate(Date.now());
   };
 
   const filterBySizeOn = () => {
     setFilterBySize((prev) => !prev);
+    setCurrentPage((prev) => 1);
     setLastUpdate(Date.now());
   };
 
   return (
     <div className="controler-box">
-      {/* <div className="search-box">
-        <input className="search-input"></input>
-        <button className="search-btn">Search</button>
-      </div> */}
       <div className="sort-box">
         <h3>Sort:</h3>
         <div className="sort-select">

@@ -6,10 +6,12 @@ const List = () => {
   const { currentCountries, loading } = useContext(MainContext);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return (
+      <div className="countries-list-box">
+        <div id="loading"></div>
+      </div>
+    );
   }
-
-  console.log(currentCountries);
 
   return (
     <>
